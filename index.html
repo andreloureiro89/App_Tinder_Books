@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.12.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <title>TinderBOOKS</title>
+  </head>
+  <body onload="getFirstBooks()">
+<!--<button class="neuomorphism box box-text">Nice Button</button>-->
+
+
+  <nav id="topo" class="navbar navbar-expand-lg d-none">
+  <a class="navbar-brand" onclick="stateView()" style="font-size: 100%;" href="#"><h3 class="intro-title"><p><strong>Tinder<i>Books</i></p></strong></h3></a>
+  <button class="navbar-toggler button neuomorphism box-input text-button-input alinhar alinhar-centro " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" style="font-size: 70%;" onclick="readBooks()" href="#"><span id="booksToRead" class="intro-title"><strong>Perfil</strong></span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2">
+          <div class="input-group" >
+              <input id="procurar" onclick="clean()" class="col-7" type="text" style="font-size: 150%;"  placeholder="Procurar Livros" >
+                  <a href="#" onclick="getBooks(procurar.value)" class="col-2 button neuomorphism box-input text-button-input alinhar alinhar-centro "><i class="fas fa-search"></i></a>
+          </div>
+    </form>
+  </div>
+</nav>
+
+    <!--<div class="row">
+      <div class="col-4 mt-3">
+          <div class="input-group" >
+              <input class="col-7" type="text"  placeholder="Procurar Livros" >
+                  <a href="#" class="col-2 button neuomorphism box-input text-button-input alinhar alinhar-centro "><i class="fas fa-search"></i></a>
+          </div>
+      </div>
+      <div class="col-5 mt-2">
+          <h1 class="intro-title mb-5 mt-2"><strong>Tinder<i>Books</i></strong>
+          <p style="font-size: 50%;">Welcome</p><i class="intro-title" ></i></h1>
+      </div>
+      <div class="col-3 mt-5">
+          <div>
+              <a href="#" onclick="logout()" class="button neuomorphism box box-text" style="font-size: 100%;">LOGOUT</a>
+            </div>
+      </div>
+    </div>-->
+
+    <div class="container" style="margin-top: 50px;">
+      <div class="mx-auto" style="width: 300px;"> 
+        <div class="row">
+        <div class="alinhar alinhar-centro coluna">
+          <div id="login" class="row" style="margin-top: 10px;" data-aos="fade-down">
+            <div class="box box-text neuomorphism text-center" >
+              <h1  class="intro-title mb-5">Welcome to<p class="mt-2"><strong>Tinder<i>Books</i></p></strong></h1>
+              <img class="intro-title" style="width: 300px;" src="imagens/tinderback.png">
+              <div class="intro-title" style="margin-top: 30px; font-size: 150%">LOGIN/SIGN IN</div>
+              <div class="input-group mt-2 mb-3" >
+                  <input onclick="removeClass()" id="username" class="col-8" type="text" placeholder="Username" >
+                      <a href="#logo" id="logo" onclick="getUserByUsername()" class="col-2 button neuomorphism box-input text-button-input alinhar alinhar-centro "><i class="fas fa-sign-in-alt"></i></a>
+                  </div>
+                  <p class="text-danger text-left"><small id="loginError"></small></p>
+            </div>
+          </div>
+
+
+          <div id="main" class="box box-text neuomorphism text-center d-none">          
+          <img id="imagem" class="mb-4" style="border-radius: 5px; width: 200px;" src="images.jpeg">
+          <h2 id="titulo" class="mt-2 mb-2">Titulo</h2>
+          <p>Descricao:</p>
+          <p id="descricao" class="normal-font truncate"></p>
+          <table class="tableInfo" style="border-spacing: 15px; border-collapse: separate; ">
+            <thead>
+              <tr>
+                <th scope="col">Autore/s</th>
+                <th scope="col">Ano</th>
+                <th scope="col">Editora</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="autores"></td>
+                <td id="data"></td>
+                <td id="editora"></td>
+              </tr>
+              <tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="botoes" class="row d-none">
+
+          <div onclick="like()" href="#" class="button box circle neuomorphism alinhar alinhar-centro">
+            <i class=" fas fa-heart"></i>
+          </div>
+
+          <div onclick="deslike()" href="#" class="button box circle neuomorphism alinhar alinhar-centro">
+            <i class="fas fa-heart-broken"></i>
+          </div>
+           </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="tabela" class="container d-none">
+
+      <div>
+          <p style="font-size: 400%; margin-bottom: 100px; margin-top: 50px;" class="intro-title text-center" id="currentUsername"></p>
+      </div>
+        <h6 style="font-size: 200%;"  class="intro-title mb-5 text-center">Liked <strong class="mt-2"><i>Books</i></strong></h6>
+                <table id="bookTable" class="table table-striped">
+                    <thead>
+                      <tr id="cabecaTabela">
+                        <th scope="col"></i></th>
+                        <th scope="col">Titulo  <i id="0" onclick="sortTable(0)" class="fas fa-angle-double-down"></i></th>
+                        <th scope="col">Autor  <i id="1" onclick="sortTable(1)" class="fas fa-angle-double-down"></i></th>
+                        <th scope="col">Editora  <i id="2" onclick="sortTable(2)" class="fas fa-angle-double-down"></i></th>
+                      </tr>
+                    </thead>
+                    <tbody id="corpoTabela">
+                    </tbody>
+                  </table>
+
+
+  <div id="alreadyRead" class="container">
+
+                    <div>
+                      <h6 style="font-size: 200%;"  class="intro-title mb-5 text-center">Alread <strong class="mt-2"><i>Read</i></strong></h6>
+                      
+                    </div>
+
+                    <table id="ratingTable" class="table table-striped">
+                          <thead>
+                              <tr id="ratingTableHead">
+                                <th scope="col">Titulo </th>
+                                <th scope="col">Autor </th>
+                                <th scope="col">Editora </th>
+                                <th scope="col">Rating  </th>
+                              </tr>
+                          </thead>
+                          <tbody id="ratingTableBody">
+                          </tbody>
+                        </table>
+
+                  </div>
+
+        <a style="margin-top: 150px;" onclick="logout()" class="col-2 button neuomorphism box-input text-button-input alinhar alinhar-centro "><span style="font-size: 130%;" class="intro-title"><strong><i>LOGOUT</i></strong></span></a>
+  
+
+      </div> 
+
+          <div id="rating" class="container mt-4 text-center d-none">
+
+            <h3 class="mb-5"><i class="intro-title" id="tituloRatingBook"></i></h3>
+            <div class='rating-widget'>
+              
+              <div class='rating-stars text-center mb-3'>
+                <ul id='stars'>
+                  <li class='star' data-value='1'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' data-value='2'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' data-value='3'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' data-value='4'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' data-value='5'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class='success-box mt-5'>
+                <div class='clearfix'></div>
+                <div class='text-message'></div>
+                <p class="mt-3" id="sugestao"></p>
+                <div class='clearfix'></div>
+                <div>
+                </div>
+              </div>
+              <div style="margin-top: 100px;" class="text-center">
+                <a href="#" onclick="backToBooksRead()" class="col-2 button neuomorphism box-input text-button-input alinhar alinhar-centro">Back</i></a>
+              </div>
+
+            </div>
+      
+    </div>
+
+                  <div style="margin-top: 200px;"></div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="back.js"></script>
+    <script>
+        AOS.init();
+
+     //   $('#main').load(getFirstBooks)
+
+        
+    </script>
+  </body>
+</html>

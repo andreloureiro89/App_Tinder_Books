@@ -1,0 +1,229 @@
+
+:root {
+	font-size: 62.5%;
+	--primary: #e0e5ec;
+	--light-shadow: #ffffff; /* white */
+	--dark-shadow: #a3b1c6;
+	--accent: hsl(351, 76%, 53%); /* #e22d48 */
+	--shadow-size: 0.75rem;
+	--shadow-blur: calc(2 * var(--shadow-size)); /* :focus, :hover => 0.5 * --shadow-blur */
+	--text-base: rgba(0, 0, 0, 0.8);
+}
+
+.navbar.transparent.navbar-inverse .navbar-inner {
+    border-width: 0px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: rgba(0,0,0,0.0);
+    background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+    background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+    background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+}
+
+
+.swal2-popup {
+	font-size: 1.6rem !important;
+  }
+
+button:focus {
+	outline: none !important;
+}
+
+input:focus, textarea {
+    outline: none !important;
+}
+
+html, body {
+	background: var(--primary);
+}
+
+button {
+	color: inherit;
+}
+
+.normal-font {
+	font-size: 70%;
+}
+
+table {
+	margin: 0 auto;
+
+}
+
+.intro-title {
+	background-color:#a3b1c6; color: transparent; text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+	background-clip: text;
+	font-size: 300%;
+}
+
+
+td {
+	font-size: 70%;
+	font-weight: 1000;
+}
+
+a {
+	color: var(--text-base);
+	transition: all 500ms;
+}
+
+a:hover, a:focus {
+	color: var(--accent);
+}
+
+.container {
+	font-size: 1.6rem;
+	color: var(--text-base);
+}
+
+.neuomorphism {
+	background: var(--primary);
+/* 	background: transparent; alternative option */
+	border: none;
+	/* offset-x offset-y blur-radius color	 */
+	box-shadow:
+		var(--shadow-size) var(--shadow-size) var(--shadow-blur) var(--dark-shadow),
+		calc(-1 * var(--shadow-size)) calc(-1 * var(--shadow-size)) var(--shadow-blur) var(--light-shadow);
+	transition: all 250ms;
+}
+
+button:hover.neuomorphism,
+.button:hover.neuomorphism {
+	cursor: pointer;
+	box-shadow: 
+		calc(0.3 * var(--shadow-size)) calc(0.3 * var(--shadow-size)) calc(0.5 * var(--shadow-blur)) var(--dark-shadow),
+		calc(-0.3 * var(--shadow-size)) calc(-0.3 * var(--shadow-size)) calc(0.5 * var(--shadow-blur)) var(--light-shadow);
+}
+
+button:focus.neuomorphism,
+.button:active.neuomorphism {
+	box-shadow: 
+		0 0 0 var(--dark-shadow),
+		0 0 0 var(--light-shadow),
+		/* without following, looks like it is pushed flat onto the page, this makes it seem like it was pushed just a bit beyond */
+		inset 0 0 var(--shadow-size) 0 var(--dark-shadow);
+}
+
+a:link {
+  text-decoration: none;
+}
+
+input {
+	padding: 0rem;
+	font-weight: bold;
+	background: var(--primary);
+	border-radius: 1rem;
+	border: none;
+	box-shadow: inset 0 0 3px 3px #a3b1c6;
+}
+
+
+.box-text {
+	padding: 2.5rem;
+	font-weight: bold;
+}
+
+.box {
+	margin: 1rem;
+	min-width: 5rem;
+	min-height: 5rem;
+	border-radius: 1rem;
+	border: none;
+}
+
+.text-button-input {
+	padding: 1rem;
+}
+
+
+.box-input {
+	margin: 1rem;
+	min-width: 1rem;
+	min-height: 1rem;
+	border-radius: 1rem;
+	border: none;
+
+}
+
+.alinhar {
+	display: flex;
+}
+
+/*.flex {
+	display: flex;
+}*/
+
+.alinhar-centro {
+	justify-content: center;
+	align-items: center;
+}
+
+/*.flex-center {
+	justify-content: center;
+	align-items: center;
+}*/
+
+
+.coluna {
+	flex-direction: column;
+}
+
+/*.flex-column {
+	flex-direction: column;
+}*/
+
+.circle {
+	border-radius: 50%;
+	color: var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--primary: hsl(0, 0%, 7%); /* #111111 */
+		--light-shadow: hsl(0, 0%, 11%); /* #1e1e1e */
+		--dark-shadow: hsl(0, 0%, 3%); /* nearly: black, #000000, actually: #080808 */
+		--accent: hsl(351, 80%, 57%);
+		--text-base: rgba(255, 255, 255, 0.7);
+	}
+}
+
+
+
+/*---------------rating--------------*/
+
+
+/* Rating Star Widgets Style */
+.rating-stars ul {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+  display:inline-block;
+  
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size:2.5em; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
+
+
+
+
+
